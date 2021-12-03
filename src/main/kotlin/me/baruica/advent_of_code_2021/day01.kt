@@ -1,4 +1,4 @@
-package day01
+package me.baruica.advent_of_code_2021
 
 import java.io.File
 
@@ -13,7 +13,7 @@ fun main() {
 
     println(
         depths
-            .windowed(3)
-            .sumOf { (a, b, c) -> a + b + c }
+            .windowed(4)
+            .count { (a, b, c, d) -> (b + c + d) > (a + b + c) }
     )
 }
