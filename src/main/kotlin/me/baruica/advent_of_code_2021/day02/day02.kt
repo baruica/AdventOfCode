@@ -8,6 +8,11 @@ val commands = File("inputs/day02.txt").readLines().map {
 }
 
 fun main() {
+    println(part1())
+    println(part2())
+}
+
+fun part1(): Int {
     var horizontalPosition = 0
     var depth = 0
 
@@ -19,5 +24,24 @@ fun main() {
         }
     }
 
-    println(horizontalPosition * depth)
+    return horizontalPosition * depth
+}
+
+fun part2(): Int {
+    var horizontalPosition = 0
+    var depth = 0
+    var aim = 0
+
+    for ((command, units) in commands) {
+        when (command) {
+            "forward" -> {
+                horizontalPosition += units
+                depth += aim * units
+            }
+            "down" -> aim += units
+            "up" -> aim -= units
+        }
+    }
+
+    return horizontalPosition * depth
 }
