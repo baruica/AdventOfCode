@@ -12,7 +12,7 @@ fun main() {
     println(part2())
 }
 
-fun part1(): Int {
+private fun part1(): Int {
     var horizontalPosition = 0
     var depth = 0
 
@@ -27,7 +27,7 @@ fun part1(): Int {
     return horizontalPosition * depth
 }
 
-fun part2(): Int {
+private fun part2(): Int {
     var horizontalPosition = 0
     var depth = 0
     var aim = 0
