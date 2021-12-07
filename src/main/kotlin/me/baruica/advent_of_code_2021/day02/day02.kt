@@ -8,11 +8,11 @@ val commands = File("inputs/day02.txt").readLines().map {
 }
 
 fun main() {
-    println(part1())
-    println(part2())
+    part1()
+    part2()
 }
 
-private fun part1(): Int {
+private fun part1() {
     var horizontalPosition = 0
     var depth = 0
 
@@ -24,10 +24,10 @@ private fun part1(): Int {
         }
     }
 
-    return horizontalPosition * depth
+    println(horizontalPosition * depth)
 }
 
-private fun part2(): Int {
+private fun part2() {
     var horizontalPosition = 0
     var depth = 0
     var aim = 0
@@ -43,5 +43,5 @@ private fun part2(): Int {
         }
     }
 
-    return horizontalPosition * depth
+    println(horizontalPosition * depth)
 }

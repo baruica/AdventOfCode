@@ -5,12 +5,19 @@ import java.io.File
 val depths = File("inputs/day01.txt").readLines().map { it.toInt() }
 
 fun main() {
+    part1()
+    part2()
+}
+
+private fun part1() {
     println(
         depths
             .windowed(2)
             .count { (a, b) -> b > a }
     )
+}
 
+private fun part2() {
     println(
         depths
             .windowed(4)
