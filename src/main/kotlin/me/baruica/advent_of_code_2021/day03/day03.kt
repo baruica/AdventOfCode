@@ -29,12 +29,12 @@ private fun gammaRate(counts: Array<Int>) = counts.fold("") { gRate, count -> if
 private fun epsilonRate(counts: Array<Int>) = counts.fold("") { eRate, count -> if (count < (diagnosticReport.size / 2)) eRate+"1" else eRate+"0" }
 
 private fun part2() {
-    val oxygenGeneratorRating = findOne(diagnosticReport, ::mostCommon)
-    val co2ScrubberRating = findOne(diagnosticReport, ::leastCommon)
+    val oxygenGeneratorRating = rating(diagnosticReport, ::mostCommon)
+    val co2ScrubberRating = rating(diagnosticReport, ::leastCommon)
     println(oxygenGeneratorRating * co2ScrubberRating)
 }
 
-fun findOne(numbers: List<String>, bitCriteriaFn: (List<String>, Int, Int) -> Int): Int {
+fun rating(numbers: List<String>, bitCriteriaFn: (List<String>, Int, Int) -> Int): Int {
     var filteredNumbers: List<String> = numbers
     var currentBitPosition = 0
 
@@ -44,7 +44,7 @@ fun findOne(numbers: List<String>, bitCriteriaFn: (List<String>, Int, Int) -> In
         currentBitPosition += 1
     }
 
-    return filteredNumbers.first().toInt(2)
+    return filteredNumbers.single().toInt(2)
 }
 
 private fun mostCommon(filteredNumbers: List<String>, currentBitPosition: Int, size: Int): Int {
