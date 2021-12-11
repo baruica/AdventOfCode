@@ -29,39 +29,30 @@ private fun gammaRate(counts: Array<Int>) = counts.fold("") { gRate, count -> if
 private fun epsilonRate(counts: Array<Int>) = counts.fold("") { eRate, count -> if (count < (diagnosticReport.size / 2)) eRate+"1" else eRate+"0" }
 
 private fun part2() {
-    println(oxygenGeneratorRating(diagnosticReport).toInt(2) * co2ScrubberRating(diagnosticReport).toInt(2))
+    val oxygenGeneratorRating = findOne(diagnosticReport, ::mostCommon)
+    val co2ScrubberRating = findOne(diagnosticReport, ::leastCommon)
+    println(oxygenGeneratorRating * co2ScrubberRating)
 }
 
-private fun oxygenGeneratorRating(numbers: List<String>): String {
-    var oxygenGeneratorRating = ""
-    var filteredNumbers: List<String>
+fun findOne(numbers: List<String>, bitCriteriaFn: (List<String>, Int, Int) -> Int): Int {
+    var filteredNumbers: List<String> = numbers
+    var currentBitPosition = 0
 
-    for (currentBitPosition in numbers.first().indices) {
-        val bitCriteria = if (numbers.sumOf { it[currentBitPosition].digitToInt() } >= (numbers.size / 2)) 1 else 0
-        filteredNumbers = numbers.filter { it[currentBitPosition].digitToInt() == bitCriteria }
-
-        if (filteredNumbers.size == 1) {
-            oxygenGeneratorRating = filteredNumbers.first()
-            break
-        }
+    while (filteredNumbers.size > 1) {
+        val bitCriteria = bitCriteriaFn(filteredNumbers, currentBitPosition, filteredNumbers.size)
+        filteredNumbers = filteredNumbers.filter { it[currentBitPosition].digitToInt() == bitCriteria }
+        currentBitPosition += 1
     }
 
-    return oxygenGeneratorRating
+    return filteredNumbers.first().toInt(2)
 }
 
-private fun co2ScrubberRating(numbers: List<String>): String {
-    var co2ScrubberRating = ""
-    var filteredNumbers: List<String>
+private fun mostCommon(filteredNumbers: List<String>, currentBitPosition: Int, size: Int): Int {
+    val count = filteredNumbers.count { it[currentBitPosition] == '1' }
+    return if (count >= (size - count)) 1 else 0
+}
 
-    for (currentBitPosition in numbers.first().indices) {
-        val bitCriteria = if (numbers.sumOf { it[currentBitPosition].digitToInt() } <= (numbers.size / 2)) 0 else 1
-        filteredNumbers = numbers.filter { it[currentBitPosition].digitToInt() == bitCriteria }
-
-        if (filteredNumbers.size == 1) {
-            co2ScrubberRating = filteredNumbers.first()
-            break
-        }
-    }
-
-    return co2ScrubberRating
+private fun leastCommon(filteredNumbers: List<String>, currentBitPosition: Int, size: Int): Int {
+    val count = filteredNumbers.count { it[currentBitPosition] == '0' }
+    return if (count <= (size - count)) 0 else 1
 }
