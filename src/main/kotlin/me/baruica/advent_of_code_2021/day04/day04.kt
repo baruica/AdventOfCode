@@ -4,17 +4,11 @@ import java.io.File
 
 val readLines = File("inputs/day04.txt").readLines()
 val numbersToDraw = readLines.first().split(",")
-val boards = readLines.drop(1).filter { it.isNotBlank() }.chunked(5).map { println(it[0].split(" ", "  ")); Board.fromList(it) }
+val boards = readLines.drop(1).filter { it.isNotBlank() }.chunked(5).map { Board(it) }
 
-data class Board(val rows: List<Int>, val columns: List<Int>) {
-    companion object {
-        fun fromList(list: List<String>): Board {
-            val columns = arrayListOf<List<Int>>()
-
-            //list.forEachIndexed { index, value ->  }
-
-            return Board(list.map { it.toInt() }, list.map { it.toInt() })
-        }
+data class Board(val rows: List<String>) {
+    fun hasNumber(number: String): Boolean {
+        return !rows.find { it.contains(number) }.isNullOrBlank()
     }
 }
 
@@ -23,6 +17,11 @@ fun main() {
 }
 
 fun part1() {
-    println(numbersToDraw)
-    println(boards)
+    numbersToDraw.forEach { number ->
+        boards.forEach { board ->
+            if (board.hasNumber(number)) {
+                if (board)
+            }
+        }
+    }
 }
