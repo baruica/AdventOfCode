@@ -5,15 +5,15 @@ import java.io.File
 val lines = File("inputs/day04.txt").readLines()
 val numbersToDraw = lines.first().split(",").map { it.toInt() }
 val boards = lines.drop(1).filter { it.isNotBlank() }.chunked(5).map { boardRows ->
-    val rows = boardRows.map { strRow -> strRow.trim().replace("  ", " ").split(" ").map { it.toInt() } }
+    val rows = boardRows.map { row -> row.trim().split("  ", " ").map { it.toInt() } }
     val columns = mutableListOf<List<Int>>()
     for (columnIndex in rows.indices) {
         columns.add(listOf(rows[0][columnIndex], rows[1][columnIndex], rows[2][columnIndex], rows[3][columnIndex], rows[4][columnIndex]))
     }
-    Board(rows, columns)
+    BingoBoard(rows, columns)
 }
 
-data class Board(
+data class BingoBoard(
     val rows: List<List<Int>>,
     val cols: List<List<Int>>
 ) {
