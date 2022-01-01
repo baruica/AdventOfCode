@@ -2,7 +2,7 @@ package me.baruica.advent_of_code_2021.day03
 
 import java.io.File
 
-val diagnosticReport = File("inputs/day03.txt").readLines()
+val diagnosticReport = File("inputs/2021/day03.txt").readLines()
 
 fun main() {
     part1()

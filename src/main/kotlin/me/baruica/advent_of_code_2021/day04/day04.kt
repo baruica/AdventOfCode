@@ -2,7 +2,7 @@ package me.baruica.advent_of_code_2021.day04
 
 import java.io.File
 
-val lines = File("inputs/day04.txt").readLines()
+val lines = File("inputs/2021/day04.txt").readLines()
 val numbersToDraw = lines.first().split(",").map { it.toInt() }
 val boards: MutableList<BingoBoard> = lines.drop(1).filter { it.isNotBlank() }.chunked(5).map { boardRows ->
     val rows = boardRows.map { row -> row.trim().split("  ", " ").map { it.toInt() } }

@@ -2,7 +2,7 @@ package me.baruica.advent_of_code_2021.day05
 
 import java.io.File
 
-val lineSegments = File("inputs/day05.txt").readLines().map { lineOfVent ->
+val lineSegments = File("inputs/2021/day05.txt").readLines().map { lineOfVent ->
     val (end1, end2) = lineOfVent.split(" -> ")
     val (end1x, end1y) = end1.split(",").map { it.toInt() }
     val (end2x, end2y) = end2.split(",").map { it.toInt() }

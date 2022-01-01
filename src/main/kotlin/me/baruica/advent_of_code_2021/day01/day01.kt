@@ -2,7 +2,7 @@ package me.baruica.advent_of_code_2021.day01
 
 import java.io.File
 
-val depths = File("inputs/day01.txt").readLines().map { it.toInt() }
+val depths = File("inputs/2021/day01.txt").readLines().map { it.toInt() }
 
 fun main() {
     part1()
