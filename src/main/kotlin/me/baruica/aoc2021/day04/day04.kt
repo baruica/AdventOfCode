@@ -1,4 +1,4 @@
-package me.baruica.advent_of_code_2021.day04
+package me.baruica.aoc2021.day04
 
 import java.io.File
 
