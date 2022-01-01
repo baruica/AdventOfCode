@@ -36,6 +36,8 @@ fun main() {
 
 private fun part1() = println(firstWinningBoardScore())
 
+private fun part2() = println(lastWinningBoardScore())
+
 private fun firstWinningBoardScore(): Int {
     val drawnNumbers = mutableListOf<Int>()
 
@@ -52,8 +54,6 @@ private fun firstWinningBoardScore(): Int {
     }
     return 0
 }
-
-private fun part2() = println(lastWinningBoardScore())
 
 private fun lastWinningBoardScore(): Int {
     val drawnNumbers = mutableListOf<Int>()

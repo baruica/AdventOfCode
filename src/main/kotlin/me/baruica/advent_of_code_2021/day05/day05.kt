@@ -16,11 +16,18 @@ data class LineSegment(val end1x: Int, val end1y: Int, val end2x: Int, val end2y
 
     fun points(): Set<Point> {
         if (points.isEmpty()) {
-            val xRange = if (end1x < end2x) end1x..end2x else end2x..end1x
-            for (x in xRange) {
-                val yRange = if (end1y < end2y) end1y..end2y else end2y..end1y
-                for (y in yRange) {
-                    points.add(Point(x, y))
+            val xRange = if (end1x < end2x) end1x..end2x else end1x downTo end2x
+            val yRange = if (end1y < end2y) end1y..end2y else end1y downTo end2y
+
+            if (isHorizontalOrVertical()) {
+                for (x in xRange) {
+                    for (y in yRange) {
+                        points.add(Point(x, y))
+                    }
+                }
+            } else {
+                for ((i, x) in xRange.withIndex()) {
+                    points.add(Point(x, yRange.elementAt(i)))
                 }
             }
         }
@@ -32,15 +39,20 @@ data class Point(val x: Int, val y: Int)
 
 fun main() {
     part1()
+    part2()
 }
 
-fun part1() = println(
+private fun part1() = println(
     numberOfPointsWhereAtLeastTwoLinesOverlap(
         lineSegments.filter { it.isHorizontalOrVertical() }
     )
 )
 
-fun numberOfPointsWhereAtLeastTwoLinesOverlap(lineSegments: List<LineSegment>): Int {
+private fun part2() = println(
+    numberOfPointsWhereAtLeastTwoLinesOverlap(lineSegments)
+)
+
+private fun numberOfPointsWhereAtLeastTwoLinesOverlap(lineSegments: List<LineSegment>): Int {
     var overlappingPoints = 0
 
     for (x in 0 ..999) {

@@ -9,18 +9,14 @@ fun main() {
     part2()
 }
 
-private fun part1() {
-    println(
-        depths
-            .windowed(2)
-            .count { (a, b) -> b > a }
-    )
-}
+private fun part1() = println(
+    depths
+        .windowed(2)
+        .count { (a, b) -> b > a }
+)
 
-private fun part2() {
-    println(
-        depths
-            .windowed(4)
-            .count { (a, b, c, d) -> (b + c + d) > (a + b + c) }
-    )
-}
+private fun part2() = println(
+    depths
+        .windowed(4)
+        .count { (a, b, c, d) -> (b + c + d) > (a + b + c) }
+)
