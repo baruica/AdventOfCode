@@ -3,14 +3,17 @@ package me.baruica.aoc2021.day06
 import java.io.File
 
 val ages = File("inputs/2021/day06_sample.txt").readLines().first().split(",").map { it.toInt() }
-val lanternfish: List<Lanternfish> = ages.map { age -> Lanternfish(InternalTimer(age)) }
+val lanternfish: MutableList<Lanternfish> = ages.map { age -> Lanternfish(InternalTimer(age)) }.toMutableList()
 
 data class Lanternfish(val internalTimer: InternalTimer) {
+
+    constructor() : this(InternalTimer())
+
     fun age() {
         when (internalTimer.days) {
             0 -> {
                 internalTimer.reset()
-                lanternfish.add(Lanternfish(InternalTimer(internalTimer.days + 2)))
+                lanternfish.add(Lanternfish())
             }
             else -> internalTimer.decrease()
         }
@@ -18,8 +21,15 @@ data class Lanternfish(val internalTimer: InternalTimer) {
 }
 
 data class InternalTimer(var days: Int) {
+
+    constructor(): this(reset + 2)
+
+    companion object {
+        private const val reset = 6
+    }
+
     fun reset() {
-        days = 6
+        days = reset
     }
 
     fun decrease() {
@@ -32,13 +42,14 @@ fun main() {
 }
 
 private fun part1() = println(
-    howManyLanternfishAfter(80)
+    howManyLanternfishAfter(18)
 )
 
 private fun howManyLanternfishAfter(days: Int): Int {
     for (day in 1..days) {
-        lanternfish.map { lanternfish -> lanternfish.age() }
+        lanternfish.forEach { lanternfish -> lanternfish.age() }
     }
+    var day = 1
 
     return lanternfish.count()
 }
