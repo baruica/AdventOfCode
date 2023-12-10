@@ -10,17 +10,17 @@ fun main() {
 }
 
 fun part1() = println(
-    linesOfText.sumOf { "${firstDigit(it)}${lastDigit(it)}".toInt() }
+    linesOfText.sumOf { calibrationValue(it) }
 )
+
+fun calibrationValue(line: String) =
+    "${line.first { it.isDigit() }}${line.last { it.isDigit() }}".toInt()
 
 fun part2() = println(
     linesOfText.sumOf { "${firstValidDigitFound(it)}${lastValidDigitFound(it)}".toInt() }
 )
 
-fun firstDigit(line: String): String = line.first { it.isDigit() }.toString()
-fun lastDigit(line: String): String = line.last { it.isDigit() }.toString()
-
-val digitsSpelledOutWithLetters = mapOf(
+val digitsSpelledOutWithLetters: Map<String, Int> = mapOf(
     "one" to 1,
     "two" to 2,
     "three" to 3,
@@ -31,6 +31,7 @@ val digitsSpelledOutWithLetters = mapOf(
     "eight" to 8,
     "nine" to 9
 )
+
 fun firstValidDigitFound(line: String): Int {
     val firstDigit: Pair<Int, Int> = firstValidDigit(line)
     val firstDigitSpelledOutWithLetters: Pair<Int, Int> = firstDigitSpelledOutWithLetters(line)
@@ -41,6 +42,7 @@ fun firstValidDigitFound(line: String): Int {
         firstDigitSpelledOutWithLetters.second
     }
 }
+
 fun firstValidDigit(line: String): Pair<Int, Int> {
     var firstDigit: Pair<Int, Int> = Pair(42, 42)
     for (digit in 1..9) {
@@ -50,12 +52,14 @@ fun firstValidDigit(line: String): Pair<Int, Int> {
     }
     return firstDigit
 }
+
 fun firstDigitSpelledOutWithLetters(line: String): Pair<Int, Int> {
     var firstDigitSpelledOutWithLetters: Pair<Int, Int> = Pair(42, 42)
     for (digitSpelledOutWithLetters in digitsSpelledOutWithLetters.keys) {
         val indexOfFirstDigit = line.indexOf(digitSpelledOutWithLetters)
         if (indexOfFirstDigit > -1 && indexOfFirstDigit < firstDigitSpelledOutWithLetters.first)
-            firstDigitSpelledOutWithLetters = Pair(indexOfFirstDigit, digitsSpelledOutWithLetters.getOrDefault(digitSpelledOutWithLetters, 42))
+            firstDigitSpelledOutWithLetters =
+                Pair(indexOfFirstDigit, digitsSpelledOutWithLetters.getOrDefault(digitSpelledOutWithLetters, 42))
     }
     return firstDigitSpelledOutWithLetters
 }
@@ -70,6 +74,7 @@ fun lastValidDigitFound(line: String): Int {
         lastDigitSpelledOutWithLetters.second
     }
 }
+
 fun lastValidDigit(line: String): Pair<Int, Int> {
     var lastDigit: Pair<Int, Int> = Pair(-42, -42)
     for (digit in 1..9) {
@@ -79,12 +84,14 @@ fun lastValidDigit(line: String): Pair<Int, Int> {
     }
     return lastDigit
 }
+
 fun lastDigitSpelledOutWithLetters(line: String): Pair<Int, Int> {
     var lastDigitSpelledOutWithLetters: Pair<Int, Int> = Pair(-42, -42)
     for (digitSpelledOutWithLetters in digitsSpelledOutWithLetters.keys) {
         val indexOfLastDigit = line.lastIndexOf(digitSpelledOutWithLetters)
         if (indexOfLastDigit > -1 && indexOfLastDigit > lastDigitSpelledOutWithLetters.first)
-            lastDigitSpelledOutWithLetters = Pair(indexOfLastDigit, digitsSpelledOutWithLetters.getOrDefault(digitSpelledOutWithLetters, -42))
+            lastDigitSpelledOutWithLetters =
+                Pair(indexOfLastDigit, digitsSpelledOutWithLetters.getOrDefault(digitSpelledOutWithLetters, -42))
     }
     return lastDigitSpelledOutWithLetters
 }
