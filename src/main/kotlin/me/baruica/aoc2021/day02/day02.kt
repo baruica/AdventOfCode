@@ -38,6 +38,7 @@ private fun part2() {
                 horizontalPosition += units
                 depth += aim * units
             }
+
             "down" -> aim += units
             "up" -> aim -= units
         }

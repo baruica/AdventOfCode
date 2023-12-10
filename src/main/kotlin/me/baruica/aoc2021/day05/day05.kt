@@ -55,7 +55,7 @@ private fun part2() = println(
 private fun numberOfPointsWhereAtLeastTwoLinesOverlap(lineSegments: List<LineSegment>): Int {
     var overlappingPoints = 0
 
-    for (x in 0 ..999) {
+    for (x in 0..999) {
         for (y in 0..999) {
             val point = Point(x, y)
             if (lineSegments.count { lineSegment -> lineSegment.points().contains(point) } >= 2) {

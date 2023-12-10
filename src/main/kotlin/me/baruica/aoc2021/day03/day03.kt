@@ -24,9 +24,11 @@ private fun counts(): Array<Int> {
     return values
 }
 
-private fun gammaRate(counts: Array<Int>) = counts.fold("") { gRate, count -> if (count > (diagnosticReport.size / 2)) gRate+"1" else gRate+"0" }
+private fun gammaRate(counts: Array<Int>) =
+    counts.fold("") { gRate, count -> if (count > (diagnosticReport.size / 2)) gRate + "1" else gRate + "0" }
 
-private fun epsilonRate(counts: Array<Int>) = counts.fold("") { eRate, count -> if (count < (diagnosticReport.size / 2)) eRate+"1" else eRate+"0" }
+private fun epsilonRate(counts: Array<Int>) =
+    counts.fold("") { eRate, count -> if (count < (diagnosticReport.size / 2)) eRate + "1" else eRate + "0" }
 
 private fun part2() {
     val oxygenGeneratorRating = rating(diagnosticReport, ::mostCommon)

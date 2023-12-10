@@ -17,7 +17,7 @@ fun calibrationValue(line: String) =
     "${line.first { it.isDigit() }}${line.last { it.isDigit() }}".toInt()
 
 fun part2() = println(
-    linesOfText.sumOf { "${firstValidDigitFound(it)}${lastValidDigitFound(it)}".toInt() }
+    linesOfText.sumOf { validCalibrationValue(it) }
 )
 
 val digitsSpelledOutWithLetters: Map<String, Int> = mapOf(
@@ -31,6 +31,9 @@ val digitsSpelledOutWithLetters: Map<String, Int> = mapOf(
     "eight" to 8,
     "nine" to 9
 )
+
+fun validCalibrationValue(line: String) =
+    "${firstValidDigitFound(line)}${lastValidDigitFound(line)}".toInt()
 
 fun firstValidDigitFound(line: String): Int {
     val firstDigit: Pair<Int, Int> = firstValidDigit(line)
