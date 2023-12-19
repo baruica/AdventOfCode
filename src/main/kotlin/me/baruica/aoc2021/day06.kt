@@ -1,4 +1,4 @@
-package me.baruica.aoc2021.day06
+package me.baruica.aoc2021
 
 import java.io.File
 
@@ -38,7 +38,7 @@ data class InternalTimer(var days: Int) {
     }
 }
 
-fun main() {
+private fun main() {
     part1()
 }
 

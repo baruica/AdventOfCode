@@ -1,22 +1,22 @@
-package me.baruica.aoc2023.day01
+package me.baruica.aoc2023
 
 import java.io.File
 
 val linesOfText = File("inputs/2023/day01.txt").readLines()
 
-fun main() {
+private fun main() {
     part1()
     part2()
 }
 
-fun part1() = println(
+private fun part1() = println(
     linesOfText.sumOf { calibrationValue(it) }
 )
 
 fun calibrationValue(line: String) =
     "${line.first { it.isDigit() }}${line.last { it.isDigit() }}".toInt()
 
-fun part2() = println(
+private fun part2() = println(
     linesOfText.sumOf { validCalibrationValue(it) }
 )
 

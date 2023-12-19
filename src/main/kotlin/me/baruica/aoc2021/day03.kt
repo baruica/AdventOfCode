@@ -1,10 +1,10 @@
-package me.baruica.aoc2021.day03
+package me.baruica.aoc2021
 
 import java.io.File
 
 val diagnosticReport = File("inputs/2021/day03.txt").readLines()
 
-fun main() {
+private fun main() {
     part1()
     part2()
 }

@@ -1,4 +1,4 @@
-package me.baruica.aoc2021.day04
+package me.baruica.aoc2021
 
 import java.io.File
 
@@ -38,7 +38,7 @@ data class BingoBoard(
     }
 }
 
-fun main() {
+private fun main() {
     part1()
     part2()
 }

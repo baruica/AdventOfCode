@@ -1,10 +1,10 @@
-package me.baruica.aoc2021.day01
+package me.baruica.aoc2021
 
 import java.io.File
 
 val depths = File("inputs/2021/day01.txt").readLines().map { it.toInt() }
 
-fun main() {
+private fun main() {
     part1()
     part2()
 }

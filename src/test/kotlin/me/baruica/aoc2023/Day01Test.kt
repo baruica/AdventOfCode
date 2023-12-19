@@ -1,4 +1,4 @@
-package me.baruica.aoc2023.day01
+package me.baruica.aoc2023
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll

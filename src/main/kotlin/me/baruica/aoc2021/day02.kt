@@ -1,4 +1,4 @@
-package me.baruica.aoc2021.day02
+package me.baruica.aoc2021
 
 import java.io.File
 
@@ -7,7 +7,7 @@ val commands = File("inputs/2021/day02.txt").readLines().map {
     Pair(command, units.toInt())
 }
 
-fun main() {
+private fun main() {
     part1()
     part2()
 }
