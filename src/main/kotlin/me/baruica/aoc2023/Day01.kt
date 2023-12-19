@@ -2,7 +2,7 @@ package me.baruica.aoc2023
 
 import java.io.File
 
-val linesOfText = File("inputs/2023/day01.txt").readLines()
+val linesOfText = File("inputs/2023/Day01.txt").readLines()
 
 fun main() {
     part1()

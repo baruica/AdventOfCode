@@ -2,7 +2,7 @@ package me.baruica.aoc2021
 
 import java.io.File
 
-val lines = File("inputs/2021/day04.txt").readLines()
+val lines = File("inputs/2021/Day04.txt").readLines()
 val numbersToDraw = lines.first().split(",").map { it.toInt() }
 val boards: MutableList<BingoBoard> =
     lines.asSequence().drop(1).filter { it.isNotBlank() }.chunked(5).map { boardRows ->

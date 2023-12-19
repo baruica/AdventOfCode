@@ -2,7 +2,7 @@ package me.baruica.aoc2021
 
 import java.io.File
 
-val commands = File("inputs/2021/day02.txt").readLines().map {
+val commands = File("inputs/2021/Day02.txt").readLines().map {
     val (command, units) = it.split(" ")
     Pair(command, units.toInt())
 }

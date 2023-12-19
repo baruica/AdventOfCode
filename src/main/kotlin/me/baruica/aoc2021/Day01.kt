@@ -2,7 +2,7 @@ package me.baruica.aoc2021
 
 import java.io.File
 
-val depths = File("inputs/2021/day01.txt").readLines().map { it.toInt() }
+val depths = File("inputs/2021/Day01.txt").readLines().map { it.toInt() }
 
 fun main() {
     part1()

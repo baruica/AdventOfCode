@@ -2,7 +2,7 @@ package me.baruica.aoc2021
 
 import java.io.File
 
-val ages = File("inputs/2021/day06_sample.txt").readLines().first().split(",").map { it.toInt() }
+val ages = File("inputs/2021/Day06_sample.txt").readLines().first().split(",").map { it.toInt() }
 val lanternFish: MutableList<LanternFish> = ages.map { age -> LanternFish(InternalTimer(age)) }.toMutableList()
 
 data class LanternFish(val internalTimer: InternalTimer) {
