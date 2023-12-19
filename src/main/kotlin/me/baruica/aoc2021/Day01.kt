@@ -4,7 +4,7 @@ import java.io.File
 
 val depths = File("inputs/2021/day01.txt").readLines().map { it.toInt() }
 
-private fun main() {
+fun main() {
     part1()
     part2()
 }

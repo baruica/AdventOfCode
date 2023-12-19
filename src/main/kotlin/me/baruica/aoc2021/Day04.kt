@@ -38,7 +38,7 @@ data class BingoBoard(
     }
 }
 
-private fun main() {
+fun main() {
     part1()
     part2()
 }

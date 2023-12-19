@@ -38,7 +38,7 @@ data class InternalTimer(var days: Int) {
     }
 }
 
-private fun main() {
+fun main() {
     part1()
 }
 

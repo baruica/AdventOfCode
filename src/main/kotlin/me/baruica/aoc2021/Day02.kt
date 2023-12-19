@@ -7,7 +7,7 @@ val commands = File("inputs/2021/day02.txt").readLines().map {
     Pair(command, units.toInt())
 }
 
-private fun main() {
+fun main() {
     part1()
     part2()
 }

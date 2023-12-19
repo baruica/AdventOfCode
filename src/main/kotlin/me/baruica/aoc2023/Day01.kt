@@ -4,7 +4,7 @@ import java.io.File
 
 val linesOfText = File("inputs/2023/day01.txt").readLines()
 
-private fun main() {
+fun main() {
     part1()
     part2()
 }

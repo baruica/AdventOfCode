@@ -4,7 +4,7 @@ import java.io.File
 
 val diagnosticReport = File("inputs/2021/day03.txt").readLines()
 
-private fun main() {
+fun main() {
     part1()
     part2()
 }

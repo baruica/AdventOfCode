@@ -37,7 +37,7 @@ data class LineSegment(val end1x: Int, val end1y: Int, val end2x: Int, val end2y
 
 data class Point(val x: Int, val y: Int)
 
-private fun main() {
+fun main() {
     part1()
     part2()
 }
