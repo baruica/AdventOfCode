@@ -8,6 +8,6 @@ fun main() {
 
 }
 
-fun getIdFromGame(game: String): Int = game.split(": ").first().split(" ").last().toInt()
+fun getIdFromGame(game: String): Int = game.substringBefore(": ").substringAfter(" ").toInt()
 
-fun subsets(game: String): List<String> = game.split(": ").last().split("; ")
+fun subsets(game: String): List<String> = game.substringAfter(": ").split("; ")
