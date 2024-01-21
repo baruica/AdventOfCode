@@ -5,9 +5,30 @@ import java.io.File
 val gameRecords = File("inputs/2023/Day02.txt").readLines()
 
 fun main() {
-
+    val games: List<Game> = gameRecords.map { Game.fromRecord(it) }
 }
 
-fun getIdFromGame(game: String): Int = game.substringBefore(": ").substringAfter(" ").toInt()
+data class Game(val id: Int, val subsets: List<Map<String, Int>>) {
+    companion object {
+        fun fromRecord(record: String): Game {
+            val subsets: List<Map<String, Int>> = record
+                .substringAfter(": ").split("; ")
+                .map { colorCounts ->
+                    val map = mutableMapOf<String, Int>()
 
-fun subsets(game: String): List<String> = game.substringAfter(": ").split("; ")
+                    colorCounts.split(", ").map { colorCount ->
+                        map[colorCount.substringAfter(" ")] = colorCount.substringBefore(" ").toInt()
+                    }
+
+                    map.toMap()
+                }
+
+            return Game(
+                getIdFromGameRecord(record),
+                subsets
+            )
+        }
+    }
+}
+
+fun getIdFromGameRecord(record: String): Int = record.substringBefore(": ").substringAfter(" ").toInt()
