@@ -9,26 +9,28 @@ fun main() {
 }
 
 data class Game(val id: Int, val subsets: List<Map<String, Int>>) {
+    fun isPossible(color: Pair<String, Int>): Boolean {
+        return subsets.
+    }
+
     companion object {
         fun fromRecord(record: String): Game {
             val subsets: List<Map<String, Int>> = record
                 .substringAfter(": ").split("; ")
                 .map { colorCounts ->
-                    val map = mutableMapOf<String, Int>()
+                    val colorCountMap = mutableMapOf<String, Int>()
 
                     colorCounts.split(", ").map { colorCount ->
-                        map[colorCount.substringAfter(" ")] = colorCount.substringBefore(" ").toInt()
+                        colorCountMap[colorCount.substringAfter(" ")] = colorCount.substringBefore(" ").toInt()
                     }
 
-                    map.toMap()
+                    colorCountMap.toMap()
                 }
 
             return Game(
-                getIdFromGameRecord(record),
+                record.substringBefore(": ").substringAfter(" ").toInt(),
                 subsets
             )
         }
     }
 }
-
-fun getIdFromGameRecord(record: String): Int = record.substringBefore(": ").substringAfter(" ").toInt()
