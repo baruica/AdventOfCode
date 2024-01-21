@@ -5,11 +5,11 @@ import io.kotest.data.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
-val game1 = Game(1, listOf(mapOf("blue" to 3, "red" to 4), mapOf("red" to 1, "green" to 2, "blue" to 6), mapOf("green" to 2)))
-val game2 = Game(2, listOf(mapOf("blue" to 1, "green" to 2), mapOf("green" to 3, "blue" to 4, "red" to 1), mapOf("green" to 1, "blue" to 1)))
-val game3 = Game(3, listOf(mapOf("green" to 8, "blue" to 6, "red" to 20), mapOf("blue" to 5, "red" to 4, "green" to 13), mapOf("green" to 5, "red" to 1)))
-val game4 = Game(4, listOf(mapOf("green" to 1, "red" to 3, "blue" to 6), mapOf("green" to 3, "red" to 6), mapOf("green" to 3, "blue" to 15, "red" to 14)))
-val game5 = Game(5, listOf(mapOf("red" to 6, "blue" to 1, "green" to 3), mapOf("blue" to 2, "red" to 1, "green" to 2)))
+val game1 = Game(1, 6, 2, 4)
+val game2 = Game(2, 4, 3, 1)
+val game3 = Game(3, 6, 13, 20)
+val game4 = Game(4, 15, 3, 14)
+val game5 = Game(5, 2, 3, 6)
 
 class Day02Test : StringSpec({
 
@@ -22,6 +22,30 @@ class Day02Test : StringSpec({
             row("Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green", game5)
         ) { gameRecord, game ->
             Game.fromRecord(gameRecord) shouldBe game
+        }
+    }
+
+    "filer games only possible with 14 blue cubes" {
+        forAll(
+            row(game1, true),
+            row(game2, true),
+            row(game3, true),
+            row(game4, false),
+            row(game5, true)
+        ) { game, possible ->
+            game.isPossible("blue" to 14) shouldBe possible
+        }
+    }
+
+    "filer games only possible with 13 green cubes" {
+        forAll(
+            row(game1, true),
+            row(game2, true),
+            row(game3, true),
+            row(game4, true),
+            row(game5, true)
+        ) { game, possible ->
+            game.isPossible("green" to 13) shouldBe possible
         }
     }
 

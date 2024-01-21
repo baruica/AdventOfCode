@@ -8,28 +8,36 @@ fun main() {
     val games: List<Game> = gameRecords.map { Game.fromRecord(it) }
 }
 
-data class Game(val id: Int, val subsets: List<Map<String, Int>>) {
+data class Game(val id: Int, val maxBlue: Int, val maxGreen: Int, val maxRed: Int) {
     fun isPossible(color: Pair<String, Int>): Boolean {
-        return subsets.
+        return when (color.first) {
+            "blue" -> color.second >= maxBlue
+            "green" -> color.second >= maxGreen
+            "red" -> color.second >= maxRed
+            else -> true
+        }
     }
 
     companion object {
         fun fromRecord(record: String): Game {
-            val subsets: List<Map<String, Int>> = record
-                .substringAfter(": ").split("; ")
-                .map { colorCounts ->
-                    val colorCountMap = mutableMapOf<String, Int>()
+            val maxColors = mutableMapOf<String, Int>()
 
-                    colorCounts.split(", ").map { colorCount ->
-                        colorCountMap[colorCount.substringAfter(" ")] = colorCount.substringBefore(" ").toInt()
+            record
+                .substringAfter(": ").split("; ").forEach { colorCounts ->
+                    colorCounts.split(", ").forEach { colorCount ->
+                        val color = colorCount.substringAfter(" ")
+                        val count = colorCount.substringBefore(" ").toInt()
+                        if (!maxColors.containsKey(color) || maxColors.getOrDefault(color, 0) < count) {
+                            maxColors[color] = count
+                        }
                     }
-
-                    colorCountMap.toMap()
                 }
 
             return Game(
                 record.substringBefore(": ").substringAfter(" ").toInt(),
-                subsets
+                maxColors.getOrDefault("blue", 0),
+                maxColors.getOrDefault("green", 0),
+                maxColors.getOrDefault("red", 0)
             )
         }
     }
