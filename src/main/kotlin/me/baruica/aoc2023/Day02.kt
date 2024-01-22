@@ -6,14 +6,20 @@ val gameRecords = File("inputs/2023/Day02.txt").readLines()
 
 fun main() {
     val games: List<Game> = gameRecords.map { Game.fromRecord(it) }
+
+    val sumOfPossibleIds = games.filter { game ->
+        game.isPossible("blue", 14) && game.isPossible("green", 13) && game.isPossible("red", 12)
+    }.sumOf { it.id }
+
+    println(sumOfPossibleIds)
 }
 
 data class Game(val id: Int, val maxBlue: Int, val maxGreen: Int, val maxRed: Int) {
-    fun isPossible(color: Pair<String, Int>): Boolean {
-        return when (color.first) {
-            "blue" -> color.second >= maxBlue
-            "green" -> color.second >= maxGreen
-            "red" -> color.second >= maxRed
+    fun isPossible(color: String, count: Int): Boolean {
+        return when (color) {
+            "blue" -> count >= maxBlue
+            "green" -> count >= maxGreen
+            "red" -> count >= maxRed
             else -> true
         }
     }
@@ -27,9 +33,8 @@ data class Game(val id: Int, val maxBlue: Int, val maxGreen: Int, val maxRed: In
                     colorCounts.split(", ").forEach { colorCount ->
                         val color = colorCount.substringAfter(" ")
                         val count = colorCount.substringBefore(" ").toInt()
-                        if (!maxColors.containsKey(color) || maxColors.getOrDefault(color, 0) < count) {
-                            maxColors[color] = count
-                        }
+
+                        maxColors[color] = maxOf(count, maxColors[color] ?: count)
                     }
                 }
 

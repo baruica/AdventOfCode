@@ -33,7 +33,7 @@ class Day02Test : StringSpec({
             row(game4, false),
             row(game5, true)
         ) { game, possible ->
-            game.isPossible("blue" to 14) shouldBe possible
+            game.isPossible("blue", 14) shouldBe possible
         }
     }
 
@@ -45,7 +45,7 @@ class Day02Test : StringSpec({
             row(game4, true),
             row(game5, true)
         ) { game, possible ->
-            game.isPossible("green" to 13) shouldBe possible
+            game.isPossible("green", 13) shouldBe possible
         }
     }
 
@@ -57,7 +57,16 @@ class Day02Test : StringSpec({
             row(game4, false),
             row(game5, true)
         ) { game, possible ->
-            game.isPossible("red" to 12) shouldBe possible
+            game.isPossible("red", 12) shouldBe possible
         }
+    }
+
+    "sum of the ids of possible games" {
+        listOf(game1, game2, game3, game4, game5)
+            .filter { game ->
+                game.isPossible("blue", 14)
+                    && game.isPossible("green", 13)
+                    && game.isPossible("red", 12)
+            }.sumOf { it.id } shouldBe 8
     }
 })
