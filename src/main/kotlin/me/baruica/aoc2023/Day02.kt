@@ -5,6 +5,10 @@ import java.io.File
 val gameRecords = File("inputs/2023/Day02.txt").readLines()
 
 fun main() {
+    part1()
+}
+
+private fun part1() {
     val games: List<Game> = gameRecords.map { Game.fromRecord(it) }
 
     val sumOfPossibleIds = games.filter { game ->
