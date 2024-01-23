@@ -25,31 +25,7 @@ class Day02Test : StringSpec({
         }
     }
 
-    "filer games only possible with 14 blue cubes" {
-        forAll(
-            row(game1, true),
-            row(game2, true),
-            row(game3, true),
-            row(game4, false),
-            row(game5, true)
-        ) { game, possible ->
-            game.isPossible("blue", 14) shouldBe possible
-        }
-    }
-
-    "filer games only possible with 13 green cubes" {
-        forAll(
-            row(game1, true),
-            row(game2, true),
-            row(game3, true),
-            row(game4, true),
-            row(game5, true)
-        ) { game, possible ->
-            game.isPossible("green", 13) shouldBe possible
-        }
-    }
-
-    "filer games only possible with 12 red cubes" {
+    "filer games only possible with 14 blue cubes, 13 green cubes and 12 red cubes" {
         forAll(
             row(game1, true),
             row(game2, true),
@@ -57,16 +33,13 @@ class Day02Test : StringSpec({
             row(game4, false),
             row(game5, true)
         ) { game, possible ->
-            game.isPossible("red", 12) shouldBe possible
+            game.isPossible(14, 13, 12) shouldBe possible
         }
     }
 
     "sum of the ids of possible games" {
         listOf(game1, game2, game3, game4, game5)
-            .filter { game ->
-                game.isPossible("blue", 14)
-                    && game.isPossible("green", 13)
-                    && game.isPossible("red", 12)
-            }.sumOf { it.id } shouldBe 8
+            .filter { game -> game.isPossible(14, 13, 12) }
+            .sumOf { it.id } shouldBe 8
     }
 })

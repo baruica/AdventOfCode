@@ -9,24 +9,17 @@ fun main() {
 }
 
 private fun part1() {
-    val games: List<Game> = gameRecords.map { Game.fromRecord(it) }
-
-    val sumOfPossibleIds = games.filter { game ->
-        game.isPossible("blue", 14) && game.isPossible("green", 13) && game.isPossible("red", 12)
-    }.sumOf { it.id }
+    val sumOfPossibleIds = gameRecords.map { Game.fromRecord(it) }
+        .filter { game -> game.isPossible(14, 13, 12) }
+        .sumOf { it.id }
 
     println(sumOfPossibleIds)
 }
 
 data class Game(val id: Int, val maxBlue: Int, val maxGreen: Int, val maxRed: Int) {
-    fun isPossible(color: String, count: Int): Boolean {
-        return when (color) {
-            "blue" -> count >= maxBlue
-            "green" -> count >= maxGreen
-            "red" -> count >= maxRed
-            else -> true
-        }
-    }
+
+    fun isPossible(blue: Int, green: Int, red: Int): Boolean =
+        blue >= maxBlue && green >= maxGreen && red >= maxRed
 
     companion object {
         fun fromRecord(record: String): Game {
