@@ -6,19 +6,28 @@ val gameRecords = File("inputs/2023/Day02.txt").readLines()
 
 fun main() {
     part1()
+    part2()
 }
 
 private fun part1() {
     val sumOfPossibleIds = gameRecords.map { Game.fromRecord(it) }
-        .filter { game -> game.isPossible(14, 13, 12) }
+        .filter { game -> game.isPossibleWithOnly(14, 13, 12) }
         .sumOf { it.id }
 
     println(sumOfPossibleIds)
 }
 
+private fun part2() {
+    val sumOfPowers = gameRecords.map { Game.fromRecord(it) }
+        .map { it.maxBlue * it.maxGreen * it.maxRed }
+        .sumOf { it }
+
+    println(sumOfPowers)
+}
+
 data class Game(val id: Int, val maxBlue: Int, val maxGreen: Int, val maxRed: Int) {
 
-    fun isPossible(blue: Int, green: Int, red: Int): Boolean =
+    fun isPossibleWithOnly(blue: Int, green: Int, red: Int): Boolean =
         blue >= maxBlue && green >= maxGreen && red >= maxRed
 
     companion object {
